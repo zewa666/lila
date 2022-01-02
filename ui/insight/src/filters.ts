@@ -15,6 +15,7 @@ function select(ctrl: Ctrl) {
             $(vnode.elm).multipleSelect({
               placeholder: dimension.name,
               width: '100%',
+              maxHeight: '300',
               selectAll: false,
               filter: dimension.key === 'opening',
               single: single,
