@@ -25,7 +25,8 @@
     "chessops": "^0.10.2",
     "common": "2.0.0",
     "puz": "2.0.0",
-    "snabbdom": "^3.0.1"
+    "snabbdom": "^3.0.1",
+    "ab": "https://github.com/lichess-org/ab-stub"
   },
   "scripts": {
     "dev": "rollup --config",

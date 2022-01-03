@@ -1,21 +1,24 @@
+/// <reference types="../types/ab" />
+
+import * as ab from 'ab';
+import * as xhr from 'common/xhr';
 import config from './config';
 import CurrentPuzzle from 'puz/current';
 import throttle from 'common/throttle';
-import * as xhr from 'common/xhr';
 import { Api as CgApi } from 'chessground/api';
 import { Boost } from './boost';
 import { Clock } from 'puz/clock';
 import { Combo } from 'puz/combo';
 import { Countdown } from './countdown';
+import { defined, prop, Prop } from 'common';
 import { getNow, puzzlePov, sound } from 'puz/util';
 import { makeCgOpts } from 'puz/run';
 import { parseUci } from 'chessops/util';
-import { Run } from 'puz/interfaces';
-import { defined, prop, Prop } from 'common';
+import { PromotionCtrl } from 'chess/promotion';
 import { RacerOpts, RacerData, RacerVm, RacerPrefs, Race, UpdatableData, RaceStatus, WithGround } from './interfaces';
 import { Role } from 'chessground/types';
+import { Run } from 'puz/interfaces';
 import { storedProp } from 'common/storage';
-import { PromotionCtrl } from 'chess/promotion';
 
 export default class RacerCtrl {
   private data: RacerData;
@@ -62,6 +65,7 @@ export default class RacerCtrl {
         this.setGround();
         this.run.current.moveIndex = 0;
         this.setGround();
+        if (this.isPlayer()) ab.racer();
       },
       () => setTimeout(this.redraw)
     );
