@@ -37,6 +37,15 @@ Compile / scalaSource       := baseDirectory.value / "app"
 Test / scalaSource          := baseDirectory.value / "test"
 Universal / sourceDirectory := baseDirectory.value / "dist"
 
+inThisBuild(
+  List(
+    scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.6.0",
+    scalaVersion                                   := "3.2.1",
+    semanticdbEnabled                              := true,
+    semanticdbVersion                              := scalafixSemanticdb.revision
+  )
+)
+
 // format: off
 libraryDependencies ++= akka.bundle ++ playWs.bundle ++ macwire.bundle ++ Seq(
   play.json, play.server, play.netty, play.logback,
