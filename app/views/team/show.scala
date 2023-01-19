@@ -161,12 +161,13 @@ object show:
                 ),
                 a(
                   href     := routes.Team.pmAll(t.id),
-                  cls      := "button button-empty text",
-                  dataIcon := ""
+                  cls      := s"${(info.pmAllsLeft <= 0) ?? "disabled "}button button-empty text",
+                  dataIcon := "",
+                  style    := (info.pmAllsLeft <= 0) ?? "pointer-events: none;"
                 )(
                   span(
                     strong(messageAllMembers()),
-                    em(messageAllMembersOverview())
+                    em(pmAllsRemainingText(info.pmAllsLeft, info.pmAllsRefresh))
                   )
                 )
               ),
@@ -279,3 +280,8 @@ object show:
       }
     )
   )
+
+  private def pmAllsRemainingText(left: Int, until: org.joda.time.DateTime) = (
+    if (left <= 0) "None left"
+    else (if (left < 7) s"$left of 7" else "All messages") + " remaining"
+  ) + (left < 7) ?? s" until ${momentFromNowServerText(until, true)}"
