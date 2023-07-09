@@ -130,9 +130,7 @@ export default class SetupController {
 
     this.ratingMin = this.propWithApply(Math.min(0, this.ratingMin()));
     this.ratingMax = this.propWithApply(Math.max(0, this.ratingMax()));
-    if (this.ratingMin() === 0 && this.ratingMax() === 0) {
-      this.ratingMax = this.propWithApply(50);
-    }
+    if (this.ratingMin() === 0 && this.ratingMax() === 0) this.ratingMax = this.propWithApply(50);
   };
 
   private savePropsToStore = (override: Partial<SetupStore> = {}) =>
